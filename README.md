@@ -14,21 +14,21 @@ Using assimp to import some 3d object file
 - Write everything in an array of pixels and send to GPU to draw as a simple texture
 - GPU is not used at all (only to show the result)
 
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/2a24ff91-87ae-48b7-942a-c63636ecb08d)
+![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/08e85a14-454d-4bc3-a368-284ccf76c60f)
 
 # Some Results
 
 ### Bunny 1920x1080
 
-![Sem título](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/9fe84d9f-f5e2-46fd-838d-b9601603e047)
+![Sem título](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/be00e964-f436-4f57-a6f4-e5f2542d4f2f)
 
 ### Suzzy Scene 1920x1080 
 
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/b512cee9-934e-402d-8bb2-d8afe7904b8f)
+![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/54946c67-67d4-4928-8043-4f5e389bacb5)
 
 ### Wire framed Dragon
 
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/9d6e528e-4d4f-41c7-bbf4-b60af068e741)
+![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/0ba5edec-4484-493c-a597-3e1b902f9477)
 
 ## Todo
 
