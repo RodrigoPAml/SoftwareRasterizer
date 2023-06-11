@@ -16,7 +16,7 @@ Using assimp to import some 3d object file
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/08e85a14-454d-4bc3-a368-284ccf76c60f)
 
-# Some Results
+# Some results
 
 ### Bunny 1920x1080
 
@@ -30,7 +30,7 @@ Using assimp to import some 3d object file
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/0ba5edec-4484-493c-a597-3e1b902f9477)
 
-## Todo
+# Todo
 
 - Advanced clipping
 - Perfect pixel triangles
