@@ -23,7 +23,7 @@ Here's a preview
 
 # Menu options
 
-- CHange framebuffer resolution
+- Change framebuffer resolution
 - Draw mode (wireframe, light, normals, positions, uvs, patterns, depth)
 - Camera movement and rotation speed
 - Fov, Aspect Ratio
