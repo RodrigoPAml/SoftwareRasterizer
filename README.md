@@ -29,7 +29,6 @@ Here's a preview
 - Fov, Aspect Ratio
 - Pattern scalar
 - ZFar and ZNear planes
-- Use Face culling
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/08e85a14-454d-4bc3-a368-284ccf76c60f)
 
