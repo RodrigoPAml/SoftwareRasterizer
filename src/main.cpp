@@ -9,8 +9,8 @@ int main()
 	Window::Init();
 	Window::Maximize();
 
-	Importer::ObjectPtr obj = Importer::Importer::Load("C:\\Users\\Rodrigo\\Desktop\\sponza.obj");
-	Raster raster = Raster(Window::GetSize());
+	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models//untitled.obj");
+	Raster raster = Raster({800, 600});
 
 	while (Window::ShouldRun())
 	{
