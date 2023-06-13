@@ -218,5 +218,8 @@
     <ClInclude Include="src\Implementation\Raster\Math.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="src\Implementation\Enums\DrawModeEnum.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,6 +24,18 @@ namespace Rasterizer
 		// Cache for screen size and pixel size
 		Vec2<float> pixelSize;
 		Vec2<float> screenSize;
+
+		float speedCamera = 1.0f;
+		float speedRotate = 1.0f;
+
+		int drawMode = 0;
+
+		int frameCount = 0;
+		float fps = 0.0;
+		float startTime = 0;
+		float pattern = 1;
+
+		DrawMode mode = DrawMode::Colored;
 	public:
 		Raster(int width, int height);
 
@@ -40,9 +52,12 @@ namespace Rasterizer
 			const Vec3<float>& p0,
 			const Vec3<float>& p1,
 			const Vec3<float>& p2,
-			const Vec3<float>& c1,
-			const Vec3<float>& c2,
-			const Vec3<float>& c3,
+			const Vec3<float>& n1,
+			const Vec3<float>& n2,
+			const Vec3<float>& n3,
+			const Vec3<float>& w1,
+			const Vec3<float>& w2,
+			const Vec3<float>& w3,
 			const Vec3<float>& color
 		);
 

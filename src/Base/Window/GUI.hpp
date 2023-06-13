@@ -64,6 +64,7 @@ namespace Window {
 		// Sliders
 		static bool Slider(const std::string& label, const Vec2<int>& limits, int& val);
 		static bool Slider(const std::string& label, const Vec2<float>& limits, float& val);
+		static bool Slider(const std::string& label, const Vec2<int>& limits, Vec2<int>& val);
 		static bool Slider(const std::string& label, const Vec2<float>& limits, Vec2<float>& val);
 		static bool Slider(const std::string& label, const Vec2<float>& limits, Vec3<float>& val);
 		static bool Slider(const std::string& label, const Vec2<float>& limits, Vec4<float>& val);

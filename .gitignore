@@ -4,3 +4,5 @@
 
 /.vs/SoftwareRasterizer
 /x64/Release
+/x64/Debug
+/imgui.ini

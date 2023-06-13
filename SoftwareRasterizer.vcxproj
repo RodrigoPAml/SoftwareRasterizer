@@ -200,6 +200,7 @@
     <ClInclude Include="src\Base\Importer\Importer.hpp" />
     <ClInclude Include="src\Base\Vector\Vec3.hpp" />
     <ClInclude Include="src\Implementation\Camera\Camera.hpp" />
+    <ClInclude Include="src\Implementation\Enums\DrawModeEnum.hpp" />
     <ClInclude Include="src\Implementation\Raster\Math.hpp" />
     <ClInclude Include="src\Implementation\Raster\Pipeline.hpp" />
     <ClInclude Include="src\Implementation\Raster\Raster.hpp" />

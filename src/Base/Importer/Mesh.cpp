@@ -34,6 +34,11 @@ namespace Importer {
 		return this->maxBox;
 	}
 
+	Vec3<int> Mesh::GetColor() const
+	{
+		return this->color;
+	}
+
 	bool Mesh::HaveNormals() const
 	{
 		return this->haveNormals;

@@ -14,6 +14,7 @@
 // C++ Headers
 #include <iostream>
 #include <string>
+#include <chrono>
 #include <algorithm>
 #include <stack>
 #include <tuple>
@@ -72,6 +73,7 @@
 #include <Base/Importer/Object.hpp>
 #include <Base/Importer/Importer.hpp>
 
+#include <Implementation/Enums/DrawModeEnum.hpp>
 #include <Implementation/Raster/Math.hpp>
 #include <Implementation/Camera/Camera.hpp>
 #include <Implementation/Raster/Pipeline.hpp>

@@ -332,6 +332,23 @@ namespace Window {
 		return ImGui::SliderFloat(id.c_str(), &val, limits.x, limits.y, "%.3f");
 	}
 
+	bool GUI::Slider(const std::string& label, const Vec2<int>& limits, Vec2<int>& val)
+	{
+		auto id = "##" + label;
+
+		int v[2];
+
+		v[0] = val.x;
+		v[1] = val.y;
+
+		bool changed = ImGui::SliderInt2(id.c_str(), v, limits.x, limits.y, "%d");
+
+		val.x = v[0];
+		val.y = v[1];
+
+		return changed;
+	}
+
 	bool GUI::Slider(const std::string& label, const Vec2<float>& limits, Vec2<float>& val)
 	{
 		auto id = "##" + label;

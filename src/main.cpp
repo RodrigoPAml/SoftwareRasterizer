@@ -10,7 +10,7 @@ int main()
 	Window::Maximize();
 
 	Importer::ObjectPtr obj = Importer::Importer::Load("C:\\Users\\Rodrigo\\Desktop\\untitled.obj");
-	Raster raster = Raster(Window::GetSize().x, Window::GetSize().y);
+	Raster raster = Raster(1900, 1000);
 
 	while (Window::ShouldRun())
 	{

@@ -11,6 +11,13 @@ namespace Math {
 		return { p1.y * p2.z - p1.z * p2.y,  p1.z * p2.x - p1.x * p2.z, p1.x * p2.y - p1.y * p2.x };
 	}
 
+	static void Clamp(Vec3<float>& p, float max)
+	{
+		p.x = std::min(p.x, max);
+		p.y = std::min(p.y, max);
+		p.z= std::min(p.z, max);
+	}
+
 	static float Dot(const Vec3<float>& p1, const Vec3<float>& p2)
 	{
 		return p1.x * p2.x + p1.y * p2.y + p1.z * p2.z;

@@ -16,7 +16,7 @@ namespace Rasterizer
 		Vec3<float> right = { 0, 0, 0 };
 
 		float pitch = 0, yaw = 0;
-		float zNear = 0.1, zFar = 100, fov = 90, aspectRatio = 8/6;
+		float zNear = 1.0f, zFar = 100, fov = 90.0f, aspectRatio = 8.0f/6.0f;
 	public:
 		Camera();
 

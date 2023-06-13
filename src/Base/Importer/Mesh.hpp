@@ -18,6 +18,8 @@ namespace Importer {
         Vec3<float> minBox, maxBox;
 
         bool haveNormals, haveUVs;
+
+        Vec3<int> color;
     public:
         float* GetVertices() const;
         float* GetNormals() const;
@@ -29,6 +31,8 @@ namespace Importer {
         Vec3<float> GetMinBoundingBox() const;
         Vec3<float> GetMaxBoundingBox() const;
     
+        Vec3<int> GetColor() const;
+
         bool HaveNormals() const;
     };
 }}

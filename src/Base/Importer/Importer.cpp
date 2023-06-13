@@ -6,6 +6,8 @@ namespace Importer
 {
     ObjectPtr Importer::Load(const std::string& path)
     {
+        srand(time(NULL));
+
         Assimp::Importer importer;
 
         const aiScene* scene = importer.ReadFile(
@@ -112,6 +114,7 @@ namespace Importer
         m.verticesSize = mesh->mNumFaces * 9;
         m.haveNormals = false;
         m.haveUVs = false;
+        m.color = { rand() % 255, rand() % 255, rand() % 255};
 
         object->meshes.push_back(m);
     }
