@@ -19,7 +19,7 @@ Here's a preview
 - Per pixel light, uv mapping, wireframe, depth testing and more
 - Everything is writed in an array of pixels (Pixel buffer) and sended to GPU to draw as a simple texture
 - GPU is not used at all (only to show the result)
-- Face culling (recent)
+- Face culling based on camera front vector (recent)
 
 # Menu options
 
