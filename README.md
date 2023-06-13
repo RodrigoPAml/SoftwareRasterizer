@@ -65,3 +65,6 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/c554af21-ee0d-4cd5-b259-580999713028)
 
+### Sponza
+
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/12651576-52e0-4b0f-b350-6789de0dd92e)
