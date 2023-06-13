@@ -47,4 +47,20 @@ namespace Pipeline {
 	{
 		return { w.x * a1 + w.y * a2 + w.z * a3};
 	}
+
+	static float IsCulled(const Vec3<float>& p1, const Vec3<float>& p2, const Vec3<float>& p3, const Vec3<float>& front)
+	{
+		Vec3<float> v1 = p2 - p1;
+		Vec3<float> v2 = p3 - p1;
+
+		Vec3<float> normal = {
+			(v1.y * v2.z) - (v1.z * v2.y),
+			(v1.z * v2.x) - (v1.x * v2.z),
+			(v1.x * v2.y) - (v1.y * v2.x)
+		};
+
+		float diff = Math::Dot(Math::Normalize(front), Math::Normalize(normal));
+
+		return 0.0f <= diff;
+	}
 }}

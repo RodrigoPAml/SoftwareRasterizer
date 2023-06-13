@@ -43,6 +43,8 @@ namespace Rasterizer
 		void TranslateRight(float speed);
 		void TranslateUp(float speed);
 
+		Vec3<float> GetFront() const;
+
 		// Apply transformation to vertex
 		void ApplyToVertex(Vec3<float>& vertex);
 	private:

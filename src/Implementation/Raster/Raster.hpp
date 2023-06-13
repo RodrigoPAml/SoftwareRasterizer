@@ -37,7 +37,7 @@ namespace Rasterizer
 
 		DrawMode mode = DrawMode::Colored;
 	public:
-		Raster(int width, int height);
+		Raster(Vec2<float> size);
 
 		void BeginDraw();
 		void EndDraw();

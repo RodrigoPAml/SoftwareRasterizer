@@ -3,9 +3,9 @@
 
 namespace Rasterizer
 {
-	Raster::Raster(int width, int height)
+	Raster::Raster(Vec2<float> size)
 	{
-		this->pixelSize = { (float)width, (float)height };
+		this->pixelSize = size;
 
 		using namespace GPU;
 
@@ -18,13 +18,13 @@ namespace Rasterizer
 		config.pixelFormat = TexturePixelFormat::UNSIGNED_INT;
 		config.magnificationFilter = MagnificationFilter::NEAREST;
 		config.minifyingFilter = MinifyingFilter::ONLY_NEAREST;
-		config.size = { width, height };
+		config.size = Math::Cast(size);
 
 		this->texture = GPU::TexturePtr(new GPU::Texture(config));
 
 		// Create a pixel buffer between the GPU and CPU to fast pixel transfer
-		this->buffer = PixelBufferPtr(new PixelBuffer(width, height, 3));
-		this->depth = new float[width * height];
+		this->buffer = PixelBufferPtr(new PixelBuffer((int)size.x, (int)size.y, 3));
+		this->depth = new float[size.x * size.y];
 
 		this->startTime = Utils::Time::GetTimestamp();
 	}
@@ -152,9 +152,9 @@ namespace Rasterizer
 			GUI::ContinueSameLine();
 			GUI::Text(std::to_string(this->fps));
 
-			GUI::Text("Patern: ");
+			GUI::Text("Pattern: ");
 			GUI::ContinueSameLine();
-			GUI::Input("patern", this->pattern);
+			GUI::Input("pattern", this->pattern);
 
 			float zfar = this->camera.GetZFar();
 			GUI::Text("ZFar: ");
@@ -345,6 +345,7 @@ namespace Rasterizer
 		
 		float zNear = this->camera.GetZNear();
 		float zFar = this->camera.GetZFar();
+		auto frontVector = this->camera.GetFront();
 
 		float fovRad = this->camera.GetFov() * (PI / 180.0f);
 		float fov = 1.0f / std::tan(fovRad / 2.0f);
@@ -363,6 +364,9 @@ namespace Rasterizer
 				Vec3<float> t1 = { vertices[i], vertices[i + 1], vertices[i + 2] };
 				Vec3<float> t2 = { vertices[i + 3], vertices[i + 4], vertices[i + 5] };
 				Vec3<float> t3 = { vertices[i + 6], vertices[i + 7], vertices[i + 8] };
+
+				//if (Pipeline::IsCulled(t1, t2, t3, frontVector))
+				//	continue;
 
 				// Normals
 				Vec3<float> n1 = { normals[i], normals[i + 1], normals[i + 2] };

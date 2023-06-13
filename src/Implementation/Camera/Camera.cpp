@@ -90,6 +90,11 @@ namespace Rasterizer
 	{
 		this->position = this->position + (this->up * speed);
 	}
+
+	Vec3<float> Camera::GetFront() const
+	{
+		return this->front;
+	}
 	
 	void Camera::ApplyToVertex(Vec3<float>& vertex)
 	{
