@@ -1,4 +1,4 @@
-# SotfwareRasterizer
+# SoftwareRasterizer
 
 A program that emulates the 3d processing rendering from scratch in the CPU with C++ maded for fun
 
