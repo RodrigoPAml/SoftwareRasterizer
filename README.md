@@ -2,7 +2,7 @@
 
 A program that emulates the 3d processing rendering from scratch in the CPU with C++ maded for fun
 
-It uses assimp to import some 3d objects files
+It uses assimp to import some 3d objects files with random colors
 
 Here's a preview
 
