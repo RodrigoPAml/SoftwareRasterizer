@@ -73,6 +73,10 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/3dff7220-b8ff-472e-b943-06df2e7d8dca)
 
+### Vilinha (made by AlpacaDS)
+
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/eb91aef7-4a7e-4592-9c58-0d3eb32495c7)
+
 # TODO
 
 - better clipping method (also increase massive peformance)
