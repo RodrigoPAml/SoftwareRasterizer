@@ -2,12 +2,13 @@
 
 A program that emulates the 3d processing rendering from scratch in the CPU with C++ maded for fun
 
-It uses assimp to import some 3d objects files with random colors
+It uses assimp to import some 3d objects files with materials
 
 Here's a preview
 
 ![Sem título](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/8a22a62c-6332-48ac-ba7d-be76ea5db629)
 
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/a28a3295-090c-48ad-a84e-c46ec5c8c234)
 
 # What is implemented ?
 
@@ -16,7 +17,7 @@ Here's a preview
 - Camera implementation with translation (with front, right and up vectors) and rotation (based on pitch and yaw)
 - Basic triangle scan line using triangle bounding box
 - Triangle interpolation for vertex attributes with z correction
-- Per pixel light, uv mapping, wireframe, depth testing and more
+- Per pixel light, uv mapping with textures, wireframe, depth testing and more
 - Everything is writed in an array of pixels (Pixel buffer) and sended to GPU to draw as a simple texture
 - GPU is not used at all (only to show the result)
 - Face culling based on camera front vector (recent)
@@ -66,4 +67,11 @@ Here's a preview
 
 ### Sponza
 
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/5c68e27f-e5c2-498a-a22a-4fae21904cee)
+
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/12651576-52e0-4b0f-b350-6789de0dd92e)
+
+# TODO
+
+- better clipping method (also increase massive peformance)
+- resolve some issues with distortion
