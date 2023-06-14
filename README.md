@@ -37,6 +37,10 @@ Here's a preview
 
 - Here is some print of the results with the best angle
 
+### Vilinha (made by AlpacaDS)
+
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/eb91aef7-4a7e-4592-9c58-0d3eb32495c7)
+
 ### Bunny 1920x1080
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/0ba32859-3119-4d8d-b651-56ac571d973b)
@@ -72,10 +76,6 @@ Here's a preview
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/12651576-52e0-4b0f-b350-6789de0dd92e)
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/3dff7220-b8ff-472e-b943-06df2e7d8dca)
-
-### Vilinha (made by AlpacaDS)
-
-![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/eb91aef7-4a7e-4592-9c58-0d3eb32495c7)
 
 # TODO
 
