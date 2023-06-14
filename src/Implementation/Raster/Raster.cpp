@@ -125,7 +125,7 @@ namespace Rasterizer
 
 			GUI::Text("Mode: ");
 			int mode = (int)this->mode;
-			if (GUI::ComboBox("mode", { "Wireframe", "Light", "Normals", "World Position", "UVs", "Pattern", "Depth"}, mode))
+			if (GUI::ComboBox("mode", { "Wireframe", "Light", "Normals", "World Position", "UVs", "Pattern", "Depth", "Textured"}, mode))
 				this->mode = (DrawMode)mode;
 
 			GUI::Text("CameraSpeed: ");
@@ -231,7 +231,10 @@ namespace Rasterizer
 		const Vec3<float>& w1,
 		const Vec3<float>& w2,
 		const Vec3<float>& w3,
-		const Vec3<float>& color
+		const Vec2<float>& uv1,
+		const Vec2<float>& uv2,
+		const Vec2<float>& uv3,
+		const Importer::Material& mat
 	)
 	{
 		int maxX = std::min(this->pixelSize.x, std::max(p2.x, std::max(p0.x, p1.x)));
@@ -252,13 +255,11 @@ namespace Rasterizer
 		Vec3<float> pos2 = w2 / p1.z;
 		Vec3<float> pos3 = w3 / p2.z;
 
-		Vec2<float> uv1 = { 0, 0 };
-		Vec2<float> uv2 = { 1, 0 };
-		Vec2<float> uv3 = { 0, 1 };
+		Vec2<float> texCoord1 = uv1 / p0.z;
+		Vec2<float> texCoord2 = uv2 / p1.z;
+		Vec2<float> texCoord3 = uv3 / p2.z;
 
-		uv1 = uv1 / p0.z;
-		uv2 = uv2 / p1.z;
-		uv3 = uv3 / p2.z;
+		auto color = mat.GetColor();
 
 		for (int y = minY; y <= maxY; ++y)
 		{
@@ -303,33 +304,47 @@ namespace Rasterizer
 							break;
 						case DrawMode::UVs:
 							{
-								Vec2<float> uv = Pipeline::InterpolateAttribute(uv1, uv2, uv3, w) * z;
+								Vec2<float> uv = Pipeline::InterpolateAttribute(texCoord1, texCoord2, texCoord3, w) * z;
 								Vec3<float> temp = { uv.x, uv.y, 0 };
 								DrawPixel(p, Math::Cast(temp * 255));
 							}
 							break;
 						case DrawMode::Pattern:
-						{
-							Vec2<float> uv = Pipeline::InterpolateAttribute(uv1, uv2, uv3, w) * z;
-							Vec3<float> normal = Math::Normalize(Pipeline::InterpolateAttribute(normal1, normal2, normal3, w) * z);
+							{
+								Vec2<float> uv = Pipeline::InterpolateAttribute(texCoord1, texCoord2, texCoord3, w) * z;
+								Vec3<float> normal = Math::Normalize(Pipeline::InterpolateAttribute(normal1, normal2, normal3, w) * z);
 
-							float sample = (fmod(uv.x * this->pattern, 1.0) > 0.5) ^ (fmod(uv.y *this->pattern, 1.0) < 0.5);
-							Vec3<float> sampleColor = { sample, sample, sample };
-							sampleColor = sampleColor * color;
+								float sample = (fmod(uv.x * this->pattern, 1.0) > 0.5) ^ (fmod(uv.y *this->pattern, 1.0) < 0.5);
+								Vec3<float> sampleColor = { sample, sample, sample };
+								sampleColor = sampleColor * color;
 
-							float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
-							Vec3<float> lightColor = (sampleColor * diff) + (sampleColor * 0.1);
-							Math::Clamp(lightColor, 1.0f);
+								float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
+								Vec3<float> lightColor = (sampleColor * diff) + (sampleColor * 0.1);
+								Math::Clamp(lightColor, 1.0f);
 
-							DrawPixel(p, Math::Cast(lightColor * 255));
-						}
-						break;
-							case DrawMode::Depth:
+								DrawPixel(p, Math::Cast(lightColor * 255));
+							}
+							break;
+						case DrawMode::Depth:
 							{
 								Vec3<float> depth = { z, z, z };
 								DrawPixel(p, Math::Cast(depth * 255));
 							}
-						break;
+							break;
+						case DrawMode::Textured:
+							{
+								Vec2<float> uv = Pipeline::InterpolateAttribute(texCoord1, texCoord2, texCoord3, w) * z;
+								Vec3<float> normal = Math::Normalize(Pipeline::InterpolateAttribute(normal1, normal2, normal3, w) * z);
+
+								Vec3<float> color = mat.GetTextureColor(uv);
+
+								float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
+								Vec3<float> lightColor = (color * diff) + (color * 0.1);
+								Math::Clamp(lightColor, 1.0f);
+
+								DrawPixel(p, Math::Cast(lightColor * 255));
+							}
+							break;
 						default:
 							break;
 						}
@@ -355,7 +370,11 @@ namespace Rasterizer
 		{
 			auto vertices = mesh.GetVertices();
 			auto normals = mesh.GetNormals();
-			auto color = mesh.GetColor();
+			auto uvs = mesh.GetUVs();
+			auto material = obj->GetMaterials()[mesh.GetMaterial()];
+
+			auto color = material.GetColor();
+
 			Vec3<float> colorF = { (float)(color.x / 255.0f), (float)(color.y / 255.0f), (float)(color.z / 255.0f) };
 
 			for (int i = 0; i < mesh.GetVerticesSize(); i += 9)
@@ -372,6 +391,11 @@ namespace Rasterizer
 				Vec3<float> n1 = { normals[i], normals[i + 1], normals[i + 2] };
 				Vec3<float> n2 = { normals[i + 3], normals[i + 4], normals[i + 5] };
 				Vec3<float> n3 = { normals[i + 6], normals[i + 7], normals[i + 8] };
+
+				// Uvs
+				Vec2<float> uv1 = { uvs[i], uvs[i + 1] };
+				Vec2<float> uv2 = { uvs[i + 3], uvs[i + 4] };
+				Vec2<float> uv3 = { uvs[i + 6], uvs[i + 7] };
 
 				// Camera or View Space
 				this->camera.ApplyToVertex(t1);
@@ -408,9 +432,9 @@ namespace Rasterizer
 					continue;
 
 				if (mode == DrawMode::Wireframe)
-					DrawWiredTriangle({t1.x, t1.y}, { t2.x, t2.y }, { t3.x, t3.y }, color);
+					DrawWiredTriangle({t1.x, t1.y}, { t2.x, t2.y }, { t3.x, t3.y }, Math::Cast(color*255));
 				else 
-					DrawTriangle(t1, t2, t3, n1, n2, n3, p1, p2 , p3, colorF);
+					DrawTriangle(t1, t2, t3, n1, n2, n3, p1, p2 , p3, uv1, uv2, uv3, material);
 			}
 		}
 	}

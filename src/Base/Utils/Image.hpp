@@ -18,6 +18,7 @@ namespace Utils {
 
 		std::string path;
 	public:
+		Image() {};
 		Image(const std::string& path, bool flipVertically = false);
 		~Image();
 

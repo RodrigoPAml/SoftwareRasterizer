@@ -4,6 +4,18 @@
 namespace Rasterizer {
 namespace Importer {
 
+	Mesh::~Mesh()
+	{
+		//if (this->vertices != nullptr)
+		//	delete[] this->vertices;
+
+		//if (this->normals != nullptr)
+		//	delete[] this->normals;
+
+		//if (this->uvs != nullptr)
+		//	delete[] this->uvs;
+	}
+
 	float* Mesh::GetVertices() const
 	{
 		return this->vertices;
@@ -12,6 +24,11 @@ namespace Importer {
 	float* Mesh::GetNormals() const
 	{
 		return this->normals;
+	}
+
+	float* Mesh::GetUVs() const
+	{
+		return this->uvs;
 	}
 
 	int Mesh::GetVerticesSize() const
@@ -32,11 +49,6 @@ namespace Importer {
 	Vec3<float> Mesh::GetMaxBoundingBox() const
 	{
 		return this->maxBox;
-	}
-
-	Vec3<int> Mesh::GetColor() const
-	{
-		return this->color;
 	}
 
 	bool Mesh::HaveNormals() const

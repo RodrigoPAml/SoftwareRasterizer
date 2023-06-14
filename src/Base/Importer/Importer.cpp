@@ -12,15 +12,20 @@ namespace Importer
 
         const aiScene* scene = importer.ReadFile(
             path, 
-            aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_OptimizeMeshes | aiProcess_GenBoundingBoxes
+            aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_OptimizeMeshes | aiProcess_GenBoundingBoxes 
         );
 
         ObjectPtr object = ObjectPtr(new Object());
 
+        object->basePath = Utils::Directory::RemovePartsFromPath(path, 1);
+
         if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
             return nullptr;
         else
+        {
             ProcessNode(scene->mRootNode, scene, object);
+            ProcessMaterials(scene, object);
+        }
 
         return object;
     }
@@ -44,8 +49,11 @@ namespace Importer
         if (!mesh->HasNormals())
             throw std::exception("need normals");
 
+        bool haveUv = mesh->HasTextureCoords(0);
+
         float* vertices = new float[mesh->mNumFaces * 9];
         float* normals = new float[mesh->mNumFaces * 9];
+        float* uvs = new float[mesh->mNumFaces * 9];
 
         unsigned int index = 0;
 
@@ -63,16 +71,25 @@ namespace Importer
                 aiVector3D n2 = mesh->mNormals[face.mIndices[1]];
                 aiVector3D n3 = mesh->mNormals[face.mIndices[2]];
 
-                aiVector3D u1 = mesh->mTextureCoords[0][face.mIndices[0]];
-                aiVector3D u2 = mesh->mTextureCoords[0][face.mIndices[1]];
-                aiVector3D u3 = mesh->mTextureCoords[0][face.mIndices[2]];
+                aiVector3D uv1 = { 0, 0, 0 };
+                aiVector3D uv2 = { 1, 0, 0 };
+                aiVector3D uv3 = { 0, 1, 0 };
+
+                if (haveUv)
+                {
+                    uv1 = mesh->mTextureCoords[0][face.mIndices[0]];
+                    uv2 = mesh->mTextureCoords[0][face.mIndices[1]];
+                    uv3 = mesh->mTextureCoords[0][face.mIndices[2]];
+                }
 
                 vertices[index] = v1.x;
                 normals[index] = n1.x;
+                uvs[index] = uv1.x;
 
                 index++;
                 vertices[index] = v1.y;
                 normals[index] = n1.y;
+                uvs[index] = uv1.y;
 
                 index++;
                 vertices[index] = v1.z;
@@ -81,10 +98,12 @@ namespace Importer
                 index++;
                 vertices[index] = v2.x;
                 normals[index] = n2.x;
+                uvs[index] = uv2.x;
 
                 index++;
                 vertices[index] = v2.y;
                 normals[index] = n2.y;
+                uvs[index] = uv2.y;
 
                 index++;
                 vertices[index] = v2.z;
@@ -93,10 +112,12 @@ namespace Importer
                 index++;
                 vertices[index] = v3.x;
                 normals[index] = n3.x;
+                uvs[index] = uv3.x;
 
                 index++;
                 vertices[index] = v3.y;
                 normals[index] = n3.y;
+                uvs[index] = uv3.y;
 
                 index++;
                 vertices[index] = v3.z;
@@ -109,13 +130,39 @@ namespace Importer
 
         m.vertices = vertices;
         m.normals = normals;
+        m.uvs = uvs;
         m.maxBox = { mesh->mAABB.mMax.x,  mesh->mAABB.mMax.y,  mesh->mAABB.mMax.z };
         m.minBox = { mesh->mAABB.mMin.x,  mesh->mAABB.mMin.y,  mesh->mAABB.mMin.z };
         m.verticesSize = mesh->mNumFaces * 9;
         m.haveNormals = false;
         m.haveUVs = false;
-        m.color = { rand() % 255, rand() % 255, rand() % 255};
+        m.material = mesh->mMaterialIndex;
 
         object->meshes.push_back(m);
+    }
+
+    void Importer::ProcessMaterials(const aiScene* scene, ObjectPtr object)
+    {
+        using namespace Utils;
+
+        aiString* path = new aiString("");
+        for (int i = 0; i < scene->mNumMaterials; i++)
+        {
+            Material m;
+            aiMaterial* material = scene->mMaterials[i];
+
+            aiColor4D diffuseColor(1.0f, 1.0f, 1.0f, 1.0f); 
+
+            if (AI_SUCCESS == material->Get(AI_MATKEY_COLOR_DIFFUSE, diffuseColor)) 
+                m.color = Vec3<float>(diffuseColor.r, diffuseColor.g, diffuseColor.b);
+
+            if (material->GetTexture(aiTextureType_DIFFUSE, 0, path) == AI_SUCCESS)
+            {
+                std::string texturePath = path->C_Str();
+                m.image = Image(object->basePath + "//" + texturePath, true);
+            }
+
+            object->materials.push_back(m);
+        }
     }
 }}

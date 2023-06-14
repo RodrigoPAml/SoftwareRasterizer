@@ -16,7 +16,7 @@ namespace Utils {
 		this->path = path;
 
 		if (!this->data)
-			return;
+			throw std::exception(("Failed to open texture in path: " + path).c_str());
 
 		if (this->size.x <= 0 || this->size.y <= 0)
 		{
@@ -43,8 +43,8 @@ namespace Utils {
 
 	Image::~Image()
 	{
-		if (this->data != nullptr)
-			delete[] this->data;
+		//if (this->data != nullptr)
+		//	delete[] this->data;
 	}
 
 	void Image::SetSize(const Vec2<int>& size)

@@ -26,7 +26,7 @@ namespace Rasterizer
 		Vec2<float> screenSize;
 
 		float speedCamera = 1.0f;
-		float speedRotate = 1.0f;
+		float speedRotate = 5.0f;
 
 		int drawMode = 0;
 
@@ -58,7 +58,10 @@ namespace Rasterizer
 			const Vec3<float>& w1,
 			const Vec3<float>& w2,
 			const Vec3<float>& w3,
-			const Vec3<float>& color
+			const Vec2<float>& uv1,
+			const Vec2<float>& uv2,
+			const Vec2<float>& uv3,
+			const Importer::Material& mat
 		);
 
 		void DrawObject(Importer::ObjectPtr obj);

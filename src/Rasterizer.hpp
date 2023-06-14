@@ -69,6 +69,7 @@
 
 #include <Base/Drawing/TextureRenderer.hpp>
 
+#include <Base/Importer/Material.hpp>
 #include <Base/Importer/Mesh.hpp>
 #include <Base/Importer/Object.hpp>
 #include <Base/Importer/Importer.hpp>

@@ -10,6 +10,7 @@ namespace Rasterizer
 		Positions,
 		UVs,
 		Pattern,
-		Depth
+		Depth,
+		Textured
 	};
 }

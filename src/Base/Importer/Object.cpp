@@ -8,4 +8,9 @@ namespace Importer {
 	{
 		return this->meshes;
 	}
+
+	std::vector<Material>& Object::GetMaterials()
+	{
+		return this->materials;
+	}
 }}
