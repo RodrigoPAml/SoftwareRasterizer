@@ -77,6 +77,8 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/3dff7220-b8ff-472e-b943-06df2e7d8dca)
 
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c1980673-85c2-4098-9140-6134deef5ff0)
+
 # TODO
 
 - better clipping method (also increase massive peformance)
