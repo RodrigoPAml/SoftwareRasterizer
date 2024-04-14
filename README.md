@@ -81,5 +81,5 @@ Here's a preview
 
 # TODO
 
-- better clipping method (also increase massive peformance)
-- resolve some issues with distortion
+- better clipping method (will increase peformance so much)
+- resolve some issues with distortion and clipping artifacts
