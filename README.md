@@ -81,6 +81,14 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c1980673-85c2-4098-9140-6134deef5ff0)
 
+### Fortress
+
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/ccfb1f60-9832-45e3-a50d-9b9e75fa3480)
+
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/650f7733-2f99-46e1-9a55-162dbc9ee8a0)
+
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/671c9b31-4476-45b1-87d1-4e741845317c)
+
 # TODO
 
 - better clipping method (will increase peformance so much)
