@@ -61,33 +61,15 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/eb91aef7-4a7e-4592-9c58-0d3eb32495c7)
 
-### Bunny 1920x1080
+### Default Scene
 
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/0ba32859-3119-4d8d-b651-56ac571d973b)
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/64c5f42e-cc18-49bf-aa4a-7c7bb6e584b9)
 
-### Scene
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/9b9eb082-61d9-43a4-9a1d-a1bf74bec18e)
 
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/5a81c101-a7dc-4d6d-85ab-5256295b15bb)
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c487afb0-3b07-4797-aa6c-b8716f30446f)
 
-### TeaPot
-
-![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/6d88d15d-6e3d-4300-86b8-b87ff361eb5a)
-
-### Scene 2
-
-![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/bb284b52-43b0-4399-9777-3aac65d071c6)
-
-### Normals
-
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/f82c72cf-513f-4dd6-97c4-fa0d467da364)
-
-### Depth
-
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/d8ca9dc2-41ab-4283-a25c-22dfa94251af)
-
-### Low Resolution 400x400
-
-![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/c554af21-ee0d-4cd5-b259-580999713028)
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/832a29e1-378a-46dd-9f00-e938ce1f3875)
 
 # TODO
 
