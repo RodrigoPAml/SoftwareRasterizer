@@ -9,8 +9,8 @@ int main()
 	Window::Init();
 	Window::Maximize();
 
-	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models//untitled.obj");
-	Raster raster = Raster({800, 600});
+	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models\\scene\\scene.obj");
+	Raster raster = Raster({400, 300});
 
 	while (Window::ShouldRun())
 	{

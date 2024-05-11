@@ -20,6 +20,8 @@ namespace Rasterizer
 	public:
 		Camera();
 
+		Vec3<float> GetPosition() const;
+
 		void SetFov(float fov);
 		float GetFov() const;
 

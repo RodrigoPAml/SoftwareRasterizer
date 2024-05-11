@@ -35,6 +35,8 @@ namespace Rasterizer
 		float startTime = 0;
 		float pattern = 1;
 
+		bool backCulling = true;
+
 		DrawMode mode = DrawMode::Colored;
 	public:
 		Raster(Vec2<float> size);

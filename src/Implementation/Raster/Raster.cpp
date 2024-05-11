@@ -168,6 +168,11 @@ namespace Rasterizer
 			if (GUI::Input("zNear", znear))
 				this->camera.SetZNear(znear);
 
+			bool culling = this->backCulling;
+			GUI::Text("Back Culling: ");
+			GUI::ContinueSameLine();
+			if (GUI::CheckBox("backCulling", culling))
+				this->backCulling = culling;
 		}
 		GUI::EndFrame();
 	}
@@ -318,10 +323,14 @@ namespace Rasterizer
 								Vec3<float> sampleColor = { sample, sample, sample };
 								sampleColor = sampleColor * color;
 
+								if (sample == 0)
+									sampleColor = { 1, 1, 1 };
+
+								// Calculo da luz
 								float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
 								Vec3<float> lightColor = (sampleColor * diff) + (sampleColor * 0.1);
 								Math::Clamp(lightColor, 1.0f);
-
+								
 								DrawPixel(p, Math::Cast(lightColor * 255));
 							}
 							break;
@@ -384,9 +393,6 @@ namespace Rasterizer
 				Vec3<float> t2 = { vertices[i + 3], vertices[i + 4], vertices[i + 5] };
 				Vec3<float> t3 = { vertices[i + 6], vertices[i + 7], vertices[i + 8] };
 
-				//if (Pipeline::IsCulled(t1, t2, t3, frontVector))
-				//	continue;
-
 				// Normals
 				Vec3<float> n1 = { normals[i], normals[i + 1], normals[i + 2] };
 				Vec3<float> n2 = { normals[i + 3], normals[i + 4], normals[i + 5] };
@@ -396,6 +402,11 @@ namespace Rasterizer
 				Vec2<float> uv1 = { uvs[i], uvs[i + 1] };
 				Vec2<float> uv2 = { uvs[i + 3], uvs[i + 4] };
 				Vec2<float> uv3 = { uvs[i + 6], uvs[i + 7] };
+
+				auto dir = ((t1 + t2 + t3) / 3) - this->camera.GetPosition();
+
+				if (this->backCulling && Pipeline::IsCulled(t1, t2, t3, dir))
+					continue;
 
 				// Camera or View Space
 				this->camera.ApplyToVertex(t1);
@@ -417,7 +428,7 @@ namespace Rasterizer
 					Pipeline::IsOutsidePlanes(t2, zNear, zFar) ||
 					Pipeline::IsOutsidePlanes(t3, zNear, zFar))
 					continue;
-			
+				
 				// Normalize into screen space
 				Pipeline::ScreenSpace(t1, this->pixelSize);
 				Pipeline::ScreenSpace(t2, this->pixelSize);

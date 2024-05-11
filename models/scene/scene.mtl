@@ -1,0 +1,74 @@
+# Blender 4.1.1 MTL File: 'None'
+# www.blender.org
+
+newmtl BUNNY
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd BUNNY/textures/DefaultMaterial_albedo.jpg
+
+newmtl DefaultMaterial
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 1
+map_Kd textures/DefaultMaterial_albedo.jpg
+map_Ns textures/DefaultMaterial_roughness.jpg
+map_refl textures/DefaultMaterial_metallic.jpg
+map_d textures/DefaultMaterial_opacity.jpg
+map_Bump -bm 1.000000 textures/DefaultMaterial_normal.png
+
+newmtl OLHO
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.061255 0.275589 0.513695
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl chá_da_tia
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800726 0.759963 0.002886
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl esfera
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.002661 0.270446 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+
+newmtl macaco
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800126 0.013722 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+
+newmtl piramide
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800032 0.097172 0.493491
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2

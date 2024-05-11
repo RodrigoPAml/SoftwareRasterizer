@@ -6,10 +6,10 @@ namespace Pipeline {
 		
 	static void Project(Vec3<float>& point, float fov, float aspectRatio)
 	{
-		point.x *= aspectRatio;
-
 		point.x = (point.x * fov)  / -point.z;
 		point.y = (point.y * fov) / -point.z;
+
+		point.x *= aspectRatio;
 	}
 
 	static void ScreenSpace(Vec3<float>& point, const Vec2<float>& size)

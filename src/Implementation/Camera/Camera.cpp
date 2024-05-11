@@ -9,6 +9,11 @@ namespace Rasterizer
 		this->Update();
 	}
 
+	Vec3<float> Camera::GetPosition() const
+	{
+		return this->position;
+	}
+
 	void Camera::SetFov(float fov)
 	{
 		this->fov = fov;
