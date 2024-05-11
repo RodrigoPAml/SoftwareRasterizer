@@ -69,7 +69,7 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c487afb0-3b07-4797-aa6c-b8716f30446f)
 
-![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/832a29e1-378a-46dd-9f00-e938ce1f3875)
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/66121edf-44cd-47dd-8f4c-afa4416cff9d)
 
 # TODO
 
