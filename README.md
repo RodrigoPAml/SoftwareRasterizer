@@ -12,6 +12,8 @@ Here's a preview
 
 ![4](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/cd625875-4e9a-4dce-87b7-2bf3ec6491ea)
 
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/49207de6-e8d5-4155-84e2-95e3d37d5e2a)
+
 # What is implemented ?
 
 - Perspective projection (world, camera and screen space ...)
@@ -65,7 +67,7 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/64c5f42e-cc18-49bf-aa4a-7c7bb6e584b9)
 
-![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/9b9eb082-61d9-43a4-9a1d-a1bf74bec18e)
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/f4f4606f-325b-435a-8743-c22f9d3d0cd2)
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c487afb0-3b07-4797-aa6c-b8716f30446f)
 
@@ -73,5 +75,4 @@ Here's a preview
 
 # TODO
 
-- better clipping method (will increase peformance so much)
-- resolve some issues with distortion and clipping artifacts
+- Clipping method for triangles ouside of the camera (will also increase peformance)
