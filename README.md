@@ -12,6 +12,8 @@ Here's a preview
 
 ![4](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/cd625875-4e9a-4dce-87b7-2bf3ec6491ea)
 
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/49207de6-e8d5-4155-84e2-95e3d37d5e2a)
+
 # What is implemented ?
 
 - Perspective projection (world, camera and screen space ...)
