@@ -15,6 +15,9 @@ namespace Importer
             aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_OptimizeMeshes | aiProcess_GenBoundingBoxes 
         );
 
+        if (scene == nullptr)
+            return nullptr;
+
         ObjectPtr object = ObjectPtr(new Object());
 
         object->basePath = Utils::Directory::RemovePartsFromPath(path, 1);

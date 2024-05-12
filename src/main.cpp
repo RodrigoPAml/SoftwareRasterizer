@@ -9,7 +9,12 @@ int main()
 	Window::Init();
 	Window::Maximize();
 
-	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models\\scene\\scene.obj");
+	std::string objName = "scene";
+	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models\\" + objName + "\\" + objName + ".obj");
+
+	if(obj == nullptr)
+		obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\" + objName + "\\" + objName + ".obj");
+
 	Raster raster = Raster({400, 300});
 
 	while (Window::ShouldRun())
