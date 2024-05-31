@@ -102,12 +102,22 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb_image;$(SolutionDir)lib\glad\include;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\lib-vc2019;$(SolutionDir)lib\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -218,6 +228,7 @@
     <ClInclude Include="src\Base\GPU\Vertex.hpp" />
     <ClInclude Include="src\Base\Input\Keyboard.hpp" />
     <ClInclude Include="src\Base\Input\Mouse.hpp" />
+    <ClInclude Include="src\Implementation\Raster\TriangleClip.hpp" />
     <ClInclude Include="src\Rasterizer.hpp" />
     <ClInclude Include="src\Base\Utils\Directory.hpp" />
     <ClInclude Include="src\Base\Utils\Time.hpp" />

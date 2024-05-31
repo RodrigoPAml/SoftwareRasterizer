@@ -79,3 +79,4 @@
 #include <Implementation/Camera/Camera.hpp>
 #include <Implementation/Raster/Pipeline.hpp>
 #include <Implementation/Raster/Raster.hpp>
+#include <Implementation/Raster/TriangleClip.hpp>

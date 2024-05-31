@@ -227,5 +227,8 @@
     <ClInclude Include="src\Base\Importer\Material.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="src\Implementation\Raster\TriangleClip.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

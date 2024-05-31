@@ -25,8 +25,8 @@ namespace Rasterizer
 		Vec2<float> pixelSize;
 		Vec2<float> screenSize;
 
-		float speedCamera = 1.0f;
-		float speedRotate = 5.0f;
+		float speedCamera = 3.0f;
+		float speedRotate = 150.0f;
 
 		int drawMode = 0;
 
@@ -36,8 +36,10 @@ namespace Rasterizer
 		float pattern = 1;
 
 		bool backCulling = true;
+		bool clip = true;
 
 		DrawMode mode = DrawMode::Colored;
+		float lastTime = Utils::Time::GetTimestamp();
 	public:
 		Raster(Vec2<float> size);
 
@@ -67,7 +69,6 @@ namespace Rasterizer
 		);
 
 		void DrawObject(Importer::ObjectPtr obj);
-	
 		bool CheckDepth(const Vec2<int>& pos, float z);
 	};
 }

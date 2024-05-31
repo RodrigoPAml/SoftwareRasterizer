@@ -42,6 +42,8 @@ namespace Rasterizer
 		Command::SwitchViewPort({ 0, 0 }, Math::Cast(this->screenSize));
 
 		pixels = this->buffer->GetPixels();
+		auto timeVar = Utils::Time::GetTimestamp() - lastTime;
+		this->lastTime = Utils::Time::GetTimestamp();
 
 		// Clear the pixels
 		for (int i = 0; i < this->buffer->GetSize(); i++)
@@ -53,26 +55,26 @@ namespace Rasterizer
 
 		// Translate camera
 		if (Keyboard::GetKeyState(KeyboardKey::KEY_UP) >= InputAction::PRESS)
-			this->camera.TranslateFront(this->speedCamera);
+			this->camera.TranslateFront(this->speedCamera * timeVar);
 		if (Keyboard::GetKeyState(KeyboardKey::KEY_DOWN) >= InputAction::PRESS)
-			this->camera.TranslateFront(-this->speedCamera);
+			this->camera.TranslateFront(-this->speedCamera * timeVar);
 		if (Keyboard::GetKeyState(KeyboardKey::KEY_LEFT) >= InputAction::PRESS)
-			this->camera.TranslateRight(-this->speedCamera);
+			this->camera.TranslateRight(-this->speedCamera * timeVar);
 		if (Keyboard::GetKeyState(KeyboardKey::KEY_RIGHT) >= InputAction::PRESS)
-			this->camera.TranslateRight(this->speedCamera);
+			this->camera.TranslateRight(this->speedCamera * timeVar);
 
 		// Look camera around
 		auto var = Mouse::GetMouseVariation();
 		bool isClicked = Mouse::GetMouseButtonState(MouseButton::MOUSE_BUTTON_RIGHT) >= InputAction::PRESS;
 
 		if(var.y > 0 && isClicked)
-			this->camera.SetPitch(this->camera.GetPitch() - this->speedRotate);
+			this->camera.SetPitch(this->camera.GetPitch() - (this->speedRotate * timeVar));
 		else if(var.y < 0 && isClicked)
-			this->camera.SetPitch(this->camera.GetPitch() + this->speedRotate);
+			this->camera.SetPitch(this->camera.GetPitch() + (this->speedRotate * timeVar));
 		if (var.x > 0 && isClicked)
-			this->camera.SetYaw(this->camera.GetYaw() + this->speedRotate);
+			this->camera.SetYaw(this->camera.GetYaw() + (this->speedRotate * timeVar));
 		else if (var.x < 0 && isClicked)
-			this->camera.SetYaw(this->camera.GetYaw() - this->speedRotate);
+			this->camera.SetYaw(this->camera.GetYaw() - (this->speedRotate * timeVar));
 	}
 
 	void Raster::EndDraw()
@@ -105,6 +107,9 @@ namespace Rasterizer
 			GUI::ContinueSameLine();
 			if (GUI::Input("pixelBufferSize", this->pixelSize))
 			{
+				this->pixelSize.x = std::min((int)this->pixelSize.x, 1900);
+				this->pixelSize.y = std::min((int)this->pixelSize.y, 1000);
+				
 				// Initilize Texture
 				TextureConfiguration config;
 
@@ -173,6 +178,12 @@ namespace Rasterizer
 			GUI::ContinueSameLine();
 			if (GUI::CheckBox("backCulling", culling))
 				this->backCulling = culling;
+
+			bool clipping = this->clip;
+			GUI::Text("Perfect Clipping: ");
+			GUI::ContinueSameLine();
+			if (GUI::CheckBox("clipping", clipping))
+				this->clip = clipping;
 		}
 		GUI::EndFrame();
 	}
@@ -381,10 +392,7 @@ namespace Rasterizer
 			auto normals = mesh.GetNormals();
 			auto uvs = mesh.GetUVs();
 			auto material = obj->GetMaterials()[mesh.GetMaterial()];
-
 			auto color = material.GetColor();
-
-			Vec3<float> colorF = { (float)(color.x / 255.0f), (float)(color.y / 255.0f), (float)(color.z / 255.0f) };
 
 			for (int i = 0; i < mesh.GetVerticesSize(); i += 9)
 			{
@@ -413,39 +421,62 @@ namespace Rasterizer
 				this->camera.ApplyToVertex(t2);
 				this->camera.ApplyToVertex(t3);
 
-				// Positions in the camera space
-				Vec3<float> p1 = { t1.x, t1.y, t1.z };
-				Vec3<float> p2 = { t2.x, t2.y, t2.z };
-				Vec3<float> p3 = { t3.x, t3.y, t3.z };
-
-				// Project into the plane
-				Pipeline::Project(t1, fov, aspectRatio);
-				Pipeline::Project(t2, fov, aspectRatio);
-				Pipeline::Project(t3, fov, aspectRatio);
-
 				// Check if z component is inside znear and zfar range
-				if (Pipeline::IsOutsidePlanes(t1, zNear, zFar) ||
-					Pipeline::IsOutsidePlanes(t2, zNear, zFar) ||
-					Pipeline::IsOutsidePlanes(t3, zNear, zFar))
-					continue;
-				
-				// Normalize into screen space
-				Pipeline::ScreenSpace(t1, this->pixelSize);
-				Pipeline::ScreenSpace(t2, this->pixelSize);
-				Pipeline::ScreenSpace(t3, this->pixelSize);
+				if (clip)
+				{
+					if (Pipeline::IsOutsidePlanes(t1, zNear, zFar) &&
+						Pipeline::IsOutsidePlanes(t2, zNear, zFar) &&
+						Pipeline::IsOutsidePlanes(t3, zNear, zFar))
+						continue;
+				}
+				else
+				{
+					if (Pipeline::IsOutsidePlanes(t1, zNear, zFar) ||
+						Pipeline::IsOutsidePlanes(t2, zNear, zFar) ||
+						Pipeline::IsOutsidePlanes(t3, zNear, zFar))
+						continue;
+				}
 
-				t1.z = (t1.z - zNear) / (zFar - zNear);
-				t2.z = (t2.z - zNear) / (zFar - zNear);
-				t3.z = (t3.z - zNear) / (zFar - zNear);
+				auto clippedTriangles = Math::TriangleClip::ClipTriangle(t1, t2, t3, n1, n2, n3, uv1, uv2, uv3, zNear, clip);
 
-				// Check if triangle is outside the screen
-				if (Pipeline::IsOutsideScreen(t1, t2, t3, this->screenSize.x, this->screenSize.y))
-					continue;
+				for (auto j = 0; j < clippedTriangles.size(); j += 3)
+				{
+					t1 = clippedTriangles[j].vertex;
+					n1 = clippedTriangles[j].normal;
+					uv1 = clippedTriangles[j].uv;
 
-				if (mode == DrawMode::Wireframe)
-					DrawWiredTriangle({t1.x, t1.y}, { t2.x, t2.y }, { t3.x, t3.y }, Math::Cast(color*255));
-				else 
-					DrawTriangle(t1, t2, t3, n1, n2, n3, p1, p2 , p3, uv1, uv2, uv3, material);
+					t3 = clippedTriangles[j+2].vertex;
+					n3 = clippedTriangles[j + 2].normal;
+					uv3 = clippedTriangles[j + 2].uv;
+
+					t2 = clippedTriangles[j + 1].vertex;
+					n2 = clippedTriangles[j + 1].normal;
+					uv2 = clippedTriangles[j + 1].uv;
+
+					// Positions in the camera space
+					Vec3<float> p1 = { t1.x, t1.y, t1.z };
+					Vec3<float> p2 = { t2.x, t2.y, t2.z };
+					Vec3<float> p3 = { t3.x, t3.y, t3.z };
+
+					// Project into the plane
+					Pipeline::Project(t1, fov, aspectRatio);
+					Pipeline::Project(t2, fov, aspectRatio);
+					Pipeline::Project(t3, fov, aspectRatio);
+
+					// Normalize into screen space
+					Pipeline::ScreenSpace(t1, this->pixelSize);
+					Pipeline::ScreenSpace(t2, this->pixelSize);
+					Pipeline::ScreenSpace(t3, this->pixelSize);
+
+					// Check if triangle is outside the screen, do not care for Z
+					if (Pipeline::IsOutsideScreen(t1, t2, t3, this->screenSize.x, this->screenSize.y))
+						continue;
+
+					if (mode == DrawMode::Wireframe)
+						DrawWiredTriangle({ t1.x, t1.y }, { t2.x, t2.y }, { t3.x, t3.y }, Math::Cast(color * 255));
+					else
+						DrawTriangle(t1, t2, t3, n1, n2, n3, p1, p2, p3, uv1, uv2, uv3, material);
+				}
 			}
 		}
 	}
