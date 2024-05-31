@@ -39,6 +39,8 @@ namespace Rasterizer
 		bool clip = true;
 
 		Vec3<float> lightDir = { -1, 0, 0 };
+		Vec3<float> lightDirNormalized = { -1, 0, 0 };
+
 		float ambientStr = 0.1;
 		DrawMode mode = DrawMode::Textured;
 		float lastTime = Utils::Time::GetTimestamp();

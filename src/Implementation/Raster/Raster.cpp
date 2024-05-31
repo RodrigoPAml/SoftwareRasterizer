@@ -189,7 +189,10 @@ namespace Rasterizer
 			GUI::Text("Light direction: ");
 			GUI::ContinueSameLine();
 			if (GUI::Slider("lightDir", { -1, 1 }, lightDir_))
+			{
 				this->lightDir = lightDir_;
+				this->lightDirNormalized = Math::Normalize(this->lightDir);
+			}
 
 			auto lightAmbientStr = this->ambientStr;
 			GUI::Text("Light ambient strenght: ");
@@ -310,7 +313,7 @@ namespace Rasterizer
 							{
 								Vec3<float> normal = Math::Normalize(Pipeline::InterpolateAttribute(normal1, normal2, normal3, w) * z);
 
-								float diff = (Math::Dot(normal, lightDir) + 1) / 2;
+								float diff = (Math::Dot(normal, lightDirNormalized) + 1) / 2;
 								Vec3<float> lightColor = (color * diff) + (color * ambientStr);
 
 								Math::Clamp(lightColor, 1.0f);
@@ -350,7 +353,7 @@ namespace Rasterizer
 									sampleColor = { 1, 1, 1 };
 
 								// Calculo da luz
-								float diff = (Math::Dot(normal, lightDir) + 1) / 2;
+								float diff = (Math::Dot(normal, lightDirNormalized) + 1) / 2;
 								Vec3<float> lightColor = (sampleColor * diff) + (sampleColor * ambientStr);
 								Math::Clamp(lightColor, 1.0f);
 								
@@ -371,7 +374,7 @@ namespace Rasterizer
 
 								Vec3<float> color = mat.GetTextureColor(uv);
 
-								float diff = (Math::Dot(normal, lightDir) + 1) / 2;
+								float diff = (Math::Dot(normal, lightDirNormalized) + 1) / 2;
 								Vec3<float> lightColor = (color * diff) + (color * ambientStr);
 								Math::Clamp(lightColor, 1.0f);
 
