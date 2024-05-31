@@ -10,6 +10,8 @@ Here's a preview
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/a28a3295-090c-48ad-a84e-c46ec5c8c234)
 
+![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/f3af5c15-140e-4ca4-8b3f-8ddff05bd48e)
+
 ![4](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/cd625875-4e9a-4dce-87b7-2bf3ec6491ea)
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/49207de6-e8d5-4155-84e2-95e3d37d5e2a)
