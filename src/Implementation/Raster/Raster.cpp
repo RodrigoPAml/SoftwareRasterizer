@@ -347,7 +347,8 @@ namespace Rasterizer
 							break;
 						case DrawMode::Depth:
 							{
-								Vec3<float> depth = { z, z, z };
+								auto zz = (z - this->camera.GetZNear()) / (this->camera.GetZFar() - this->camera.GetZNear());
+								Vec3<float> depth = { zz, zz, zz };
 								DrawPixel(p, Math::Cast(depth * 255));
 							}
 							break;

@@ -9,7 +9,7 @@ int main()
 	Window::Init();
 	Window::Maximize();
 
-	std::string objName = "scene";
+	std::string objName = "sibenik";
 	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models\\" + objName + "\\" + objName + ".obj");
 
 	if(obj == nullptr)
