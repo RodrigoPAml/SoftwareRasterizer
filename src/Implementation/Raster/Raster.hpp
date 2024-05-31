@@ -38,7 +38,9 @@ namespace Rasterizer
 		bool backCulling = true;
 		bool clip = true;
 
-		DrawMode mode = DrawMode::Colored;
+		Vec3<float> lightDir = { -1, 0, 0 };
+		float ambientStr = 0.1;
+		DrawMode mode = DrawMode::Textured;
 		float lastTime = Utils::Time::GetTimestamp();
 	public:
 		Raster(Vec2<float> size);

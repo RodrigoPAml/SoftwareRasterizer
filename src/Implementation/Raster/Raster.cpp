@@ -184,6 +184,18 @@ namespace Rasterizer
 			GUI::ContinueSameLine();
 			if (GUI::CheckBox("clipping", clipping))
 				this->clip = clipping;
+
+			auto lightDir_ = this->lightDir;
+			GUI::Text("Light direction: ");
+			GUI::ContinueSameLine();
+			if (GUI::Slider("lightDir", { -1, 1 }, lightDir_))
+				this->lightDir = lightDir_;
+
+			auto lightAmbientStr = this->ambientStr;
+			GUI::Text("Light ambient strenght: ");
+			GUI::ContinueSameLine();
+			if (GUI::Slider("ambientStr", { -1, 1 }, lightAmbientStr))
+				this->ambientStr = lightAmbientStr;
 		}
 		GUI::EndFrame();
 	}
@@ -298,8 +310,8 @@ namespace Rasterizer
 							{
 								Vec3<float> normal = Math::Normalize(Pipeline::InterpolateAttribute(normal1, normal2, normal3, w) * z);
 
-								float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
-								Vec3<float> lightColor = (color * diff) + (color * 0.1);
+								float diff = (Math::Dot(normal, lightDir) + 1) / 2;
+								Vec3<float> lightColor = (color * diff) + (color * ambientStr);
 
 								Math::Clamp(lightColor, 1.0f);
 
@@ -338,8 +350,8 @@ namespace Rasterizer
 									sampleColor = { 1, 1, 1 };
 
 								// Calculo da luz
-								float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
-								Vec3<float> lightColor = (sampleColor * diff) + (sampleColor * 0.1);
+								float diff = (Math::Dot(normal, lightDir) + 1) / 2;
+								Vec3<float> lightColor = (sampleColor * diff) + (sampleColor * ambientStr);
 								Math::Clamp(lightColor, 1.0f);
 								
 								DrawPixel(p, Math::Cast(lightColor * 255));
@@ -359,8 +371,8 @@ namespace Rasterizer
 
 								Vec3<float> color = mat.GetTextureColor(uv);
 
-								float diff = (Math::Dot(normal, { -1, 0, 0 }) + 1) / 2;
-								Vec3<float> lightColor = (color * diff) + (color * 0.1);
+								float diff = (Math::Dot(normal, lightDir) + 1) / 2;
+								Vec3<float> lightColor = (color * diff) + (color * ambientStr);
 								Math::Clamp(lightColor, 1.0f);
 
 								DrawPixel(p, Math::Cast(lightColor * 255));
