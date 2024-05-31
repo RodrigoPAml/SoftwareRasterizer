@@ -75,4 +75,4 @@ Here's a preview
 
 # TODO
 
-- Clipping method for triangles ouside of the camera (will also increase peformance)
+- Better clipping method for triangles ouside of the camera (will also increase peformance)
