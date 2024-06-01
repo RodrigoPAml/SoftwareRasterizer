@@ -74,3 +74,8 @@ Here's a preview
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c487afb0-3b07-4797-aa6c-b8716f30446f)
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/0fce884a-18d9-420a-a378-3a5051ec5155)
+
+### To do
+
+- A better triangle drawing algorithm, to get more peformance
+- Triangle clipping is done perfectly only on Z axis, maybe if done in all axis will increase performance
