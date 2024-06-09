@@ -63,6 +63,16 @@ namespace Rasterizer
 		if (Keyboard::GetKeyState(KeyboardKey::KEY_RIGHT) >= InputAction::PRESS)
 			this->camera.TranslateRight(this->speedCamera * timeVar);
 
+		// Translate camera
+		if (Keyboard::GetKeyState(KeyboardKey::KEY_W) >= InputAction::PRESS)
+			this->camera.TranslateFront(this->speedCamera * timeVar);
+		if (Keyboard::GetKeyState(KeyboardKey::KEY_S) >= InputAction::PRESS)
+			this->camera.TranslateFront(-this->speedCamera * timeVar);
+		if (Keyboard::GetKeyState(KeyboardKey::KEY_A) >= InputAction::PRESS)
+			this->camera.TranslateRight(-this->speedCamera * timeVar);
+		if (Keyboard::GetKeyState(KeyboardKey::KEY_D) >= InputAction::PRESS)
+			this->camera.TranslateRight(this->speedCamera * timeVar);
+
 		// Look camera around
 		auto var = Mouse::GetMouseVariation();
 		bool isClicked = Mouse::GetMouseButtonState(MouseButton::MOUSE_BUTTON_RIGHT) >= InputAction::PRESS;
@@ -75,6 +85,11 @@ namespace Rasterizer
 			this->camera.SetYaw(this->camera.GetYaw() + (this->speedRotate * timeVar));
 		else if (var.x < 0 && isClicked)
 			this->camera.SetYaw(this->camera.GetYaw() - (this->speedRotate * timeVar));
+		
+		if (Keyboard::GetKeyState(KeyboardKey::KEY_Q) >= InputAction::PRESS)
+			this->camera.SetFov(this->camera.GetFov() + 1.1);
+		if (Keyboard::GetKeyState(KeyboardKey::KEY_E) >= InputAction::PRESS)
+			this->camera.SetFov(this->camera.GetFov() - 1.1);
 	}
 
 	void Raster::EndDraw()

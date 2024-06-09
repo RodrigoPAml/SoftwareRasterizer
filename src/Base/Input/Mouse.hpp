@@ -51,18 +51,18 @@ namespace Input {
 		/// <summary>
 		/// Sets the mouse visualization mode.
 		/// </summary>
-		void SetMouseMode(const MouseMode mode);
+		static void SetMouseMode(const MouseMode mode);
 
 		/// <summary>
 		/// Get the mouse scroll.
 		/// Based on current frame.
 		/// </summary>
-		float GetScroll();
+		static float GetScroll();
 
 		/// <summary>
 		/// Get if the mouse is inside the window.
 		/// </summary>
-		bool IsMouseInsideWindow();
+		static bool IsMouseInsideWindow();
 	private:
 		Mouse() {};
 		Mouse(Mouse const&);
