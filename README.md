@@ -4,9 +4,17 @@ A program that emulates the 3d processing rendering from scratch in the CPU with
 
 It uses assimp to import some 3d objects files with materials
 
-Here's a preview
-
 ![245426484-8a22a62c-6332-48ac-ba7d-be76ea5db629](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/bf4f6ff5-3029-439f-a41e-f891bf68d838)
+
+# GIFS
+
+![gif2](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/a5d46760-b792-4893-b28d-861fda8c1627)
+
+![gif3](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c706a63c-8460-471f-8995-7274977237d1)
+
+![gif1](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/1663c16f-b971-4c02-b602-4693eb17765f)
+
+# Images
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/a28a3295-090c-48ad-a84e-c46ec5c8c234)
 
