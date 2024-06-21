@@ -6,7 +6,9 @@ It uses assimp to import some 3d objects files with materials
 
 ![245673981-bf4f6ff5-3029-439f-a41e-f891bf68d838](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/87fb973a-5eb4-48d0-8c24-7f32254ecf25)
 
-# GIFS
+## GIFS
+
+Check some results
 
 ![gif2](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/a5d46760-b792-4893-b28d-861fda8c1627)
 
@@ -14,7 +16,7 @@ It uses assimp to import some 3d objects files with materials
 
 ![gif1](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/1663c16f-b971-4c02-b602-4693eb17765f)
 
-# What is implemented ?
+## What is implemented ?
 
 - Perspective projection (world, camera and screen space ...)
 - Naive triangle "clipping"
@@ -28,7 +30,7 @@ It uses assimp to import some 3d objects files with materials
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/08e85a14-454d-4bc3-a368-284ccf76c60f)
 
-# Menu options
+## Menu options
 
 - Change framebuffer resolution
 - Draw mode (wireframe, light, normals, positions, uvs, patterns, depth)
@@ -37,11 +39,11 @@ It uses assimp to import some 3d objects files with materials
 - Pattern scalar
 - ZFar and ZNear planes
 
-# Funny Results
+## Funny Results
 
 - Here is some print of the results with the best angle
 
-## Images
+### Images
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/a28a3295-090c-48ad-a84e-c46ec5c8c234)
 
@@ -52,7 +54,7 @@ It uses assimp to import some 3d objects files with materials
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/49207de6-e8d5-4155-84e2-95e3d37d5e2a)
 
 
-## Sponza
+### Sponza
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/5c68e27f-e5c2-498a-a22a-4fae21904cee)
 
@@ -60,7 +62,7 @@ It uses assimp to import some 3d objects files with materials
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/c1980673-85c2-4098-9140-6134deef5ff0)
 
-## Fortress
+### Fortress
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/ccfb1f60-9832-45e3-a50d-9b9e75fa3480)
 
@@ -68,7 +70,7 @@ It uses assimp to import some 3d objects files with materials
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/671c9b31-4476-45b1-87d1-4e741845317c)
 
-# To do
+## To do
 
 - A better triangle drawing algorithm, to get more peformance
 - Triangle clipping is done perfectly only on Z axis, maybe if done in all axis will increase performance
