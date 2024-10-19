@@ -1,6 +1,6 @@
 # SoftwareRasterizer
 
-A program that emulates the 3d processing rendering from scratch in the CPU with C++ maded for fun
+A program that emulates the 3d rendering process from scratch in the CPU with C++ maded for fun
 
 It uses assimp to import some 3d objects files with materials
 
