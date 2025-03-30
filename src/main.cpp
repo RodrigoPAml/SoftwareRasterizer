@@ -12,12 +12,17 @@ int main()
 	OpenModelModal modal;
 	auto modelPath = modal.Draw();
 
+	if (modelPath == "")
+	{
+		std::cout << "Empty model to open" << std::endl;
+		return 0;
+	}
+
 	auto obj = Importer::Importer::Load(modelPath);
 
 	if (obj == nullptr)
 	{
 		std::cout << "Fail to open " << modelPath << std::endl;
-		Window::Close();
 		return 0;
 	}
 
