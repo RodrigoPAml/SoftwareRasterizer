@@ -1,6 +1,6 @@
 # SoftwareRasterizer
 
-A program that emulates the 3d rendering process from scratch in the CPU with C++ maded for fun
+A program that emulates the 3d rendering process writed from scratch in the CPU with C++ for fun
 
 It uses assimp to import some 3d objects files with materials
 
@@ -19,7 +19,7 @@ Check some results
 ## What is implemented ?
 
 - Perspective projection (world, camera and screen space ...)
-- Naive triangle "clipping"
+- Naive triangle clipping
 - Camera implementation with translation (with front, right and up vectors) and rotation (based on pitch and yaw)
 - Basic triangle scan line using triangle bounding box
 - Triangle interpolation for vertex attributes with z correction
@@ -30,15 +30,40 @@ Check some results
 
 ![image](https://github.com/RodrigoPAml/SotfwareRasterizer/assets/41243039/08e85a14-454d-4bc3-a368-284ccf76c60f)
 
-## Menu options
+## Using the rasterizer
 
-- Change framebuffer resolution
-- Draw mode (wireframe, light, normals, positions, uvs, patterns, depth)
-- Camera movement and rotation speed
+You can build by downloading the project and compiling it or by downloading the results that also come with models for test
+
+### Opening a model
+
+- On the topbar click on File -> Open then select the model 3d to open
+
+![image](https://github.com/user-attachments/assets/cb3117de-b93c-4a6c-914c-66f7326ee659)
+
+### Using
+
+To move use the wasd or the arrows and the mouse with right click to look around
+
+The menu has the following options
+
+- Change the render resolution
+- Change draw mode/shader (wireframe, light, normals, positions, uvs, patterns, depth)
+- Change camera movement and rotation speed
 - Fov, Aspect Ratio
-- Pattern scalar
+- FPS view
+- Pattern scalar option (for pattern draw mode)
 - ZFar and ZNear planes
+- Back-culling
+- Perfect clipping
+- Light direction and ambient light strength
 
+![image](https://github.com/user-attachments/assets/bcaff4be-1928-4c5d-ac91-394e827f034f)
+
+## To do
+
+- A better triangle drawing algorithm, to get more peformance
+- Triangle clipping is done perfectly only on Z axis, maybe if done in all axis will increase performance
+  
 ## Funny Results
 
 - Here is some print of the results with the best angle
@@ -70,7 +95,3 @@ Check some results
 
 ![image](https://github.com/RodrigoPAml/SoftwareRasterizer/assets/41243039/671c9b31-4476-45b1-87d1-4e741845317c)
 
-## To do
-
-- A better triangle drawing algorithm, to get more peformance
-- Triangle clipping is done perfectly only on Z axis, maybe if done in all axis will increase performance
