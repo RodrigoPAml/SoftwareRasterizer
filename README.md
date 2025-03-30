@@ -42,7 +42,9 @@ You can build by downloading the project and compiling it or by downloading the 
 
 ### Using
 
-To move use the wasd or the arrows and the mouse with right click to look around
+To move use the wasd or the arrows
+
+To look around drag the mouse with right click
 
 The menu has the following options
 
