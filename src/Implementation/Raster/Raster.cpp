@@ -9,7 +9,7 @@ namespace Rasterizer
 
 		using namespace GPU;
 
-		// Initilize Texture
+		// Textura do OpenGL usada pra por os pixels
 		TextureConfiguration config;
 
 		config.ansiotropicFilter = 0;
@@ -22,7 +22,7 @@ namespace Rasterizer
 
 		this->texture = GPU::TexturePtr(new GPU::Texture(config));
 
-		// Create a pixel buffer between the GPU and CPU to fast pixel transfer
+		// Pixel buffer para que os pixels na CPU possam ser transferidos para a GPU de forma rápida
 		this->buffer = PixelBufferPtr(new PixelBuffer((int)size.x, (int)size.y, 3));
 		this->depth = new float[size.x * size.y];
 

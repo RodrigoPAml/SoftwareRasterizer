@@ -99,6 +99,9 @@
     <ClCompile Include="src\Base\Importer\Material.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="src\Implementation\Modal\OpenModelModal.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Base\Window\Window.hpp">
@@ -215,10 +218,10 @@
     <ClInclude Include="src\Implementation\Camera\Camera.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="src\Implementation\Raster\Pipeline.hpp">
+    <ClInclude Include="src\Implementation\Utils\Pipeline.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="src\Implementation\Raster\Math.hpp">
+    <ClInclude Include="src\Implementation\Utils\Math.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="src\Implementation\Enums\DrawModeEnum.hpp">
@@ -227,7 +230,10 @@
     <ClInclude Include="src\Base\Importer\Material.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="src\Implementation\Raster\TriangleClip.hpp">
+    <ClInclude Include="src\Implementation\Utils\TriangleClip.hpp">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Implementation\Modal\OpenModelModal.hpp">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

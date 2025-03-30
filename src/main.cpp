@@ -9,11 +9,17 @@ int main()
 	Window::Init();
 	Window::Maximize();
 
-	std::string objName = "sibenik";
-	Importer::ObjectPtr obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\..\\..\\models\\" + objName + "\\" + objName + ".obj");
+	OpenModelModal modal;
+	auto modelPath = modal.Draw();
 
-	if(obj == nullptr)
-		obj = Importer::Importer::Load(Utils::Directory::GetCurrentPath() + "\\" + objName + "\\" + objName + ".obj");
+	auto obj = Importer::Importer::Load(modelPath);
+
+	if (obj == nullptr)
+	{
+		std::cout << "Fail to open " << modelPath << std::endl;
+		Window::Close();
+		return 0;
+	}
 
 	Raster raster = Raster({400, 300});
 

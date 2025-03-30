@@ -3,6 +3,9 @@
 
 namespace Rasterizer
 {
+	/// <summary>
+	/// Classe que faz a rasterização
+	/// </summary>
 	class Raster
 	{
 	private:

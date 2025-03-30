@@ -75,8 +75,9 @@
 #include <Base/Importer/Importer.hpp>
 
 #include <Implementation/Enums/DrawModeEnum.hpp>
-#include <Implementation/Raster/Math.hpp>
+#include <Implementation/Utils/Math.hpp>
 #include <Implementation/Camera/Camera.hpp>
-#include <Implementation/Raster/Pipeline.hpp>
+#include <Implementation/Utils/Pipeline.hpp>
 #include <Implementation/Raster/Raster.hpp>
-#include <Implementation/Raster/TriangleClip.hpp>
+#include <Implementation/Utils/TriangleClip.hpp>
+#include <Implementation/Modal/OpenModelModal.hpp>

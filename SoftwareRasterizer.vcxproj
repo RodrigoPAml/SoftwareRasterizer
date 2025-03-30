@@ -44,6 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -108,10 +109,14 @@
       <AdditionalIncludeDirectories>$(SolutionDir)lib\glfw\include;$(SolutionDir)lib\stb_image;$(SolutionDir)lib\glad\include;$(SolutionDir)src;$(SolutionDir)lib\imgui;$(SolutionDir)lib\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <OmitFramePointers>true</OmitFramePointers>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>Rasterizer.hpp</PrecompiledHeaderFile>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,6 +124,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\lib-vc2019;$(SolutionDir)lib\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glfw3dll.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y ".\lib\assimp\lib\assimp-vc142-mt.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -132,11 +140,12 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>Rasterizer.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
       <OmitFramePointers>false</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,31 +155,47 @@
       <AdditionalLibraryDirectories>$(SolutionDir)lib\glfw\lib-vc2019;$(SolutionDir)lib\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glfw3dll.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>copy /Y ".\lib\assimp\lib\assimp-vc142-mt.dll" "$(OutDir)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lib\glad\src\glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui_demo.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui_draw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui_impl_glfw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui_impl_opengl3.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui_tables.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="lib\imgui\imgui_widgets.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Base\Importer\Material.cpp" />
     <ClCompile Include="src\Base\Importer\Mesh.cpp" />
@@ -178,6 +203,7 @@
     <ClCompile Include="src\Base\GPU\PixelBuffer.cpp" />
     <ClCompile Include="src\Base\Importer\Importer.cpp" />
     <ClCompile Include="src\Implementation\Camera\Camera.cpp" />
+    <ClCompile Include="src\Implementation\Modal\OpenModelModal.cpp" />
     <ClCompile Include="src\Implementation\Raster\Raster.cpp" />
     <ClCompile Include="src\Base\Drawing\TextureRenderer.cpp" />
     <ClCompile Include="src\Base\GPU\Command.cpp" />
@@ -215,8 +241,9 @@
     <ClInclude Include="src\Base\Vector\Vec3.hpp" />
     <ClInclude Include="src\Implementation\Camera\Camera.hpp" />
     <ClInclude Include="src\Implementation\Enums\DrawModeEnum.hpp" />
-    <ClInclude Include="src\Implementation\Raster\Math.hpp" />
-    <ClInclude Include="src\Implementation\Raster\Pipeline.hpp" />
+    <ClInclude Include="src\Implementation\Modal\OpenModelModal.hpp" />
+    <ClInclude Include="src\Implementation\Utils\Math.hpp" />
+    <ClInclude Include="src\Implementation\Utils\Pipeline.hpp" />
     <ClInclude Include="src\Implementation\Raster\Raster.hpp" />
     <ClInclude Include="src\Base\Common\InputEnums.hpp" />
     <ClInclude Include="src\Base\Common\WindowStructs.hpp" />
@@ -228,7 +255,7 @@
     <ClInclude Include="src\Base\GPU\Vertex.hpp" />
     <ClInclude Include="src\Base\Input\Keyboard.hpp" />
     <ClInclude Include="src\Base\Input\Mouse.hpp" />
-    <ClInclude Include="src\Implementation\Raster\TriangleClip.hpp" />
+    <ClInclude Include="src\Implementation\Utils\TriangleClip.hpp" />
     <ClInclude Include="src\Rasterizer.hpp" />
     <ClInclude Include="src\Base\Utils\Directory.hpp" />
     <ClInclude Include="src\Base\Utils\Time.hpp" />
